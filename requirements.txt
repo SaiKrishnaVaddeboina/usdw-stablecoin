@@ -1,0 +1,4 @@
+# Runtime dependencies for the Streamlit demo (used by Streamlit Community Cloud).
+# For local development, prefer: pip install -r python_sim/requirements.txt
+streamlit>=1.30,<2.0
+pandas>=2.0,<3.0
