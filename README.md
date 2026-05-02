@@ -4,7 +4,7 @@
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![Hyperledger Fabric](https://img.shields.io/badge/Hyperledger-Fabric%202.5-2F3134.svg)](https://www.hyperledger.org/use/fabric)
 [![Streamlit](https://img.shields.io/badge/UI-Streamlit-FF4B4B.svg)](https://streamlit.io/)
-[![CI](https://github.com/OWNER/usdw-stablecoin/actions/workflows/ci.yml/badge.svg)](https://github.com/OWNER/usdw-stablecoin/actions/workflows/ci.yml)
+[![CI](https://github.com/SaiKrishnaVaddeboina/usdw-stablecoin/actions/workflows/ci.yml/badge.svg)](https://github.com/SaiKrishnaVaddeboina/usdw-stablecoin/actions/workflows/ci.yml)
 
 > A reference implementation of a regulated, permissioned stablecoin aligned with the **GENIUS Act** compliance pillars — built with Hyperledger Fabric chaincode and a Python simulation engine for fast iteration.
 
@@ -109,7 +109,7 @@ usdw-stablecoin/
 The fastest way to see USDw in action. No Docker, no Fabric, no Node:
 
 ```bash
-git clone https://github.com/OWNER/usdw-stablecoin.git
+git clone https://github.com/SaiKrishnaVaddeboina/usdw-stablecoin.git
 cd usdw-stablecoin
 
 python -m venv .venv
