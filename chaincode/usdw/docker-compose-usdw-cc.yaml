@@ -1,0 +1,25 @@
+version: "3.9"
+networks:
+  test:
+    external: true
+    name: fabric_test
+
+services:
+  usdw-cc:
+    container_name: usdw-cc
+    image: ghcr.io/hyperledger/fabric-nodeenv:2.5
+    working_dir: /chaincode
+    networks:
+      - test
+    volumes:
+      - ./:/chaincode
+    environment:
+      # Filled later after we know PACKAGE_ID
+      - CORE_CHAINCODE_ID_NAME=
+    command: >
+      bash -lc "npm install &&
+                ./node_modules/.bin/fabric-chaincode-node server
+                --chaincode-address 0.0.0.0:9999
+                --chaincode-id-name ${CORE_CHAINCODE_ID_NAME}"
+    ports:
+      - "9999:9999"

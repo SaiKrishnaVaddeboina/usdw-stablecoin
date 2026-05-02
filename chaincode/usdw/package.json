@@ -1,0 +1,9 @@
+{
+  "name": "usdw-chaincode",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "fabric-contract-api": "^2.5.0",
+    "fabric-shim": "^2.5.0"
+  }
+}
