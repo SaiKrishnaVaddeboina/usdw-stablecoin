@@ -41,33 +41,39 @@ The same logic appears in two places so you can compare:
 
 ## Features
 
-| Capability | Chaincode | Simulator | Notes |
-|---|---|---|---|
-| Account lifecycle | ✅ | ✅ | Register, freeze, unfreeze |
-| KYC submit & verify | ✅ | ✅ | Hash-only, no PII on-chain |
-| Issuer-restricted mint | ✅ | ✅ | `Org1MSP` only in chaincode |
-| Reserves ≥ supply enforcement | ✅ | ✅ | Mint blocks if reserves break |
-| Sanctions screening | ✅ | ✅ | Blocks on either side of transfer |
-| Travel-rule hash | ✅ | ✅ | SHA-256 of off-chain FATF payload |
-| Account history / events | ✅ | ✅ | `TxHistory` + event log |
-| Post-quantum signature (mock) | — | ✅ | Demonstrates PQC agility path |
-| One-click demo scenarios | — | ✅ | `happy_path`, `freeze_flow` |
+| Capability | Chaincode | Simulator | CLI | Notes |
+|---|:---:|:---:|:---:|---|
+| Account lifecycle | ✅ | ✅ | ✅ | Register, freeze, unfreeze |
+| KYC submit & verify | ✅ | ✅ | ✅ | Hash-only, no PII on-chain |
+| Issuer-restricted mint | ✅ | ✅ | ✅ | `Org1MSP` only in chaincode |
+| Reserves ≥ supply enforcement | ✅ | ✅ | ✅ | Mint blocks if reserves break |
+| Sanctions screening | ✅ | ✅ | ✅ | Blocks on either side of transfer |
+| Travel-rule hash | ✅ | ✅ | ✅ | SHA-256 of off-chain FATF payload |
+| Account history / events | ✅ | ✅ | ✅ | `TxHistory` + event log w/ timestamps |
+| Post-quantum signature + verify (mock) | — | ✅ | ✅ | Sign + on-screen verification badge |
+| Live dashboard with charts | — | ✅ | — | Reserves, supply, balance distribution, transfer-volume timeline |
+| Audit log filtering & CSV/JSON export | — | ✅ | — | Filter by event type, full-text search, download |
+| Demo scenarios | — | ✅ | ✅ | `happy_path`, `freeze_flow`, `sanctions_flow`, `reserve_breach_attempt`, `stress_test` |
+| Docker one-command run | — | ✅ | — | `docker compose up` |
 
 ## Architecture
 
 ```
 ┌──────────────────────────────────────────────────────────────┐
 │                      Streamlit UI (ui/app.py)                │
-│   Tabs: Accounts · Compliance · Mint/Transfer · Risk · Logs  │
+│  Sidebar metrics · Dashboard charts · Accounts · KYC ·       │
+│  Mint/Transfer · Risk · Audit Log · Scenarios                │
 └─────────────────────────┬────────────────────────────────────┘
                           │
-                ┌─────────▼─────────┐         ┌────────────────────┐
-                │  Python Engine    │  <-->   │  PQC Mock          │
-                │  (python_sim/)    │         │  (Dilithium-style) │
-                └─────────┬─────────┘         └────────────────────┘
-                          │ same business rules
-                          │
-┌─────────────────────────▼────────────────────────────────────┐
+        ┌─────────────────┼─────────────────┐
+        │                 │                 │
+┌───────▼────────┐  ┌─────▼──────┐  ┌──────▼────────────┐
+│  Python Engine │  │  CLI tool  │  │  PQC Mock         │
+│ (python_sim/)  │←→│ (cli/)     │  │ (Dilithium-style) │
+└───────┬────────┘  └────────────┘  └───────────────────┘
+        │ same business rules
+        │
+┌───────▼──────────────────────────────────────────────────────┐
 │            Hyperledger Fabric Chaincode (Node.js)            │
 │       chaincode/usdw/  — Org1MSP issuer, multi-org peers     │
 └──────────────────────────────────────────────────────────────┘
@@ -82,18 +88,16 @@ usdw-stablecoin/
 │   ├── index.js
 │   └── package.json
 ├── python_sim/                 # Pure-Python engine
-│   ├── engine.py               # Account, Mint, Transfer, KYC, freeze
+│   ├── engine.py               # Account, Mint, Transfer, KYC, freeze, summary
 │   ├── pqc_mock.py             # Mock PQC signature primitives
-│   ├── scenarios.py            # Pre-built demo flows
+│   ├── scenarios.py            # Pre-built demo flows (5 scenarios)
 │   └── requirements.txt
-├── ui/app.py                   # Streamlit demo
+├── ui/app.py                   # Streamlit demo (7 tabs + sidebar)
+├── cli/usdw.py                 # Headless CLI wrapping the engine
 ├── scripts/                    # Fabric network + chaincode automation
-│   ├── start_network.sh
-│   ├── deploy_usdw.sh
-│   └── invoke_examples.sh
-├── tests/                      # pytest suite
-├── docs/
-│   └── GENIUS_mapping_template.md
+├── tests/                      # pytest suite (51 tests)
+├── docs/GENIUS_mapping_template.md
+├── Dockerfile + docker-compose.yml + .streamlit/
 ├── .github/workflows/ci.yml    # CI: lint + tests
 └── README.md
 ```
@@ -106,7 +110,17 @@ usdw-stablecoin/
 
 ## Quick Start — Simulator
 
-The fastest way to see USDw in action. No Docker, no Fabric, no Node:
+### Option A — Docker (one command)
+
+```bash
+git clone https://github.com/SaiKrishnaVaddeboina/usdw-stablecoin.git
+cd usdw-stablecoin
+docker compose up
+```
+
+Open <http://localhost:8501>.
+
+### Option B — Local Python
 
 ```bash
 git clone https://github.com/SaiKrishnaVaddeboina/usdw-stablecoin.git
@@ -114,12 +128,28 @@ cd usdw-stablecoin
 
 python -m venv .venv
 source .venv/bin/activate            # Windows: .venv\Scripts\activate
-pip install -r python_sim/requirements.txt
+pip install -r requirements.txt
 
 streamlit run ui/app.py
 ```
 
-Open the URL Streamlit prints (default <http://localhost:8501>). Try the **Scenarios → Happy Path ▶** button to see a full register → KYC → mint → transfer flow.
+Try the **Scenarios → Happy Path ▶** button to populate the dashboard.
+
+## Quick Start — CLI
+
+For headless / scripted use without the UI:
+
+```bash
+python cli/usdw.py scenario happy_path
+python cli/usdw.py summary
+python cli/usdw.py register dave
+python cli/usdw.py kyc verify dave
+python cli/usdw.py mint dave 200 --reserves 2000
+python cli/usdw.py transfer alice dave 50 --pqc
+python cli/usdw.py events --type Transfer --limit 5
+```
+
+State persists in `$TMPDIR/usdw_cli_state.pkl` between invocations. Override with `USDW_STATE=/path/to/state.pkl`.
 
 ## Quick Start — Chaincode
 

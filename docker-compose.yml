@@ -1,0 +1,8 @@
+services:
+  usdw-ui:
+    build: .
+    image: usdw-stablecoin:latest
+    container_name: usdw-ui
+    ports:
+      - "8501:8501"
+    restart: unless-stopped
