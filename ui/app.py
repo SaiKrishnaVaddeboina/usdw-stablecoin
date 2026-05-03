@@ -10,7 +10,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "p
 
 import pandas as pd
 import streamlit as st
-from engine import Engine
+from engine import ENGINE_VERSION, Engine
 from scenarios import SCENARIOS
 
 st.set_page_config(
@@ -29,6 +29,12 @@ if "last_transfer" not in st.session_state:
     st.session_state.last_transfer = None
 
 e: Engine = st.session_state.engine
+
+# Defensive check: if Streamlit Cloud has cached an old build of the engine,
+# replace the session-state instance with a fresh one rather than crashing.
+if not hasattr(e, "get_summary"):
+    st.session_state.engine = Engine()
+    e = st.session_state.engine
 
 
 def reset_engine():
@@ -99,7 +105,7 @@ with st.sidebar:
 
     st.markdown("---")
     st.caption("📂 [Source on GitHub](https://github.com/SaiKrishnaVaddeboina/usdw-stablecoin)")
-    st.caption("Teaching project — no real funds.")
+    st.caption(f"Engine v{ENGINE_VERSION} · Teaching project — no real funds.")
 
 
 # ────────────────────────────────────────────────────────────────────────────

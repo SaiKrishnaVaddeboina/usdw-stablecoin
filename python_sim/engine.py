@@ -5,6 +5,8 @@ import json
 import time
 from dataclasses import dataclass, field
 
+ENGINE_VERSION = "2.0.0"
+
 
 @dataclass
 class Account:
