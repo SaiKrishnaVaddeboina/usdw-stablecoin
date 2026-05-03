@@ -1,6 +1,6 @@
 # USDw — Regulated Stablecoin (Teaching Project)
 
-[![🚀 Live Demo](https://img.shields.io/badge/%F0%9F%9A%80-Live%20Demo-FF4B4B?style=for-the-badge)](https://usdw-stablecoin.streamlit.app)
+[![🚀 Live Demo](https://img.shields.io/badge/%F0%9F%9A%80-Live%20Demo-FF4B4B?style=for-the-badge)](https://saikrishnavaddeboina-usdw-stablecoin-uiapp-apogkm.streamlit.app)
 &nbsp;
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
@@ -10,7 +10,7 @@
 
 > A reference implementation of a regulated, permissioned stablecoin aligned with the **GENIUS Act** compliance pillars — built with Hyperledger Fabric chaincode and a Python simulation engine for fast iteration.
 
-> 👉 **[Try the live demo](https://usdw-stablecoin.streamlit.app)** — runs entirely in your browser, no setup required.
+> 👉 **[Try the live demo](https://saikrishnavaddeboina-usdw-stablecoin-uiapp-apogkm.streamlit.app)** — runs entirely in your browser, no setup required.
 >
 > ⚠️ **Teaching project.** No real funds, no real PII, no production guarantees. Cryptography is mocked for clarity (see [PQC notes](#post-quantum-cryptography-pqc)).
 
@@ -39,7 +39,7 @@
 
 ## Live Demo
 
-🌐 **<https://usdw-stablecoin.streamlit.app>** — hosted on Streamlit Community Cloud, free for anyone to try.
+🌐 **<https://saikrishnavaddeboina-usdw-stablecoin-uiapp-apogkm.streamlit.app>** — hosted on Streamlit Community Cloud, free for anyone to try.
 
 Suggested 60-second tour:
 
@@ -50,34 +50,30 @@ Suggested 60-second tour:
 
 ## Screenshots
 
-<table>
-<tr>
-<td width="50%" align="center">
-<b>Dashboard</b><br>
-<sub>Live metrics · Reserves vs Supply · Balance distribution</sub><br>
-<a href="docs/screenshots/dashboard.png"><img src="docs/screenshots/dashboard.png" alt="Dashboard screenshot" width="100%"></a>
-</td>
-<td width="50%" align="center">
-<b>Mint & Transfer</b><br>
-<sub>Travel-rule preview · PQC signature verification</sub><br>
-<a href="docs/screenshots/transfer.png"><img src="docs/screenshots/transfer.png" alt="Mint & Transfer screenshot" width="100%"></a>
-</td>
-</tr>
-<tr>
-<td width="50%" align="center">
-<b>Audit Log</b><br>
-<sub>Filterable, searchable, exportable event stream</sub><br>
-<a href="docs/screenshots/audit.png"><img src="docs/screenshots/audit.png" alt="Audit Log screenshot" width="100%"></a>
-</td>
-<td width="50%" align="center">
-<b>Scenarios</b><br>
-<sub>One-click demo flows for the full lifecycle</sub><br>
-<a href="docs/screenshots/scenarios.png"><img src="docs/screenshots/scenarios.png" alt="Scenarios screenshot" width="100%"></a>
-</td>
-</tr>
-</table>
+<div align="center">
 
-> **Add your own screenshots:** drop PNGs into [`docs/screenshots/`](docs/screenshots/) using the filenames above (`dashboard.png`, `transfer.png`, `audit.png`, `scenarios.png`) and they'll show up here automatically.
+[![Open Live Demo](https://img.shields.io/badge/%E2%96%B6%EF%B8%8F%20Open%20Live%20Demo-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)](https://saikrishnavaddeboina-usdw-stablecoin-uiapp-apogkm.streamlit.app)
+
+**The live demo is the most up-to-date showcase.** Click above to try it instantly.
+
+</div>
+
+<details>
+<summary><b>What you'll see (click to expand)</b></summary>
+
+| Tab | What it shows |
+|---|---|
+| **📊 Dashboard** | Live metrics in the sidebar (accounts, supply, reserves, ratio), plus three charts: reserves vs supply, balance distribution, transfer-volume timeline |
+| **👤 Accounts** | Searchable account table with KYC status, freeze, and sanctions flags |
+| **✅ Compliance (KYC)** | Submit/verify KYC; smart selectboxes only show eligible accounts |
+| **💸 Mint & Transfer** | Issuer-restricted mint with reserve enforcement; travel-rule payload preview before submit; on-screen ✅ verification of the PQC signature on transfer receipts |
+| **🛡️ Risk Controls** | One-click freeze/unfreeze/sanction/unsanction with current-state metrics |
+| **📜 Audit Log** | Filterable + searchable event stream; CSV + full-state JSON export |
+| **🎬 Scenarios** | Five one-click flows: happy path, freeze, sanctions, reserve breach, stress test |
+
+</details>
+
+> **Want to add static screenshots?** Drop PNGs into [`docs/screenshots/`](docs/screenshots/) — see the README in that folder for the recommended filenames and capture tips.
 
 ## Why USDw?
 
