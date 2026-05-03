@@ -1,6 +1,7 @@
 # USDw — Regulated Stablecoin (Teaching Project)
 
 [![🚀 Live Demo](https://img.shields.io/badge/%F0%9F%9A%80-Live%20Demo-FF4B4B?style=for-the-badge)](https://saikrishnavaddeboina-usdw-stablecoin-uiapp-apogkm.streamlit.app)
+[![Open in Codespaces](https://img.shields.io/badge/%E2%9C%A8%20Open%20in-Codespaces-181717?style=for-the-badge&logo=github)](https://github.com/codespaces/new?repo=SaiKrishnaVaddeboina%2Fusdw-stablecoin&ref=main)
 &nbsp;
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
@@ -19,7 +20,6 @@
 ## Table of Contents
 
 - [Live Demo](#live-demo)
-
 - [Why USDw?](#why-usdw)
 - [Features](#features)
 - [Architecture](#architecture)
@@ -39,9 +39,21 @@
 
 ## Live Demo
 
-🌐 **<https://saikrishnavaddeboina-usdw-stablecoin-uiapp-apogkm.streamlit.app>** — hosted on Streamlit Community Cloud, free for anyone to try.
+Two ways to try USDw without installing anything:
 
-Suggested 60-second tour:
+### 🚀 Streamlit Cloud (always-on, public)
+
+🌐 **<https://saikrishnavaddeboina-usdw-stablecoin-uiapp-apogkm.streamlit.app>**
+
+### ✨ GitHub Codespaces (one-click, your own sandbox)
+
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?repo=SaiKrishnaVaddeboina%2Fusdw-stablecoin&ref=main)
+
+Click the button above to launch your own dev environment in the browser. The included [`devcontainer.json`](.devcontainer/devcontainer.json) auto-installs dependencies and starts Streamlit — you'll see the app preview pop up in 60-90 seconds. Free GitHub accounts get 60 hours/month.
+
+---
+
+Suggested 60-second tour (either path):
 
 1. Click **🎬 Scenarios → Happy Path ▶** to populate the system with sample data
 2. Switch to **📊 Dashboard** to see the reserves-vs-supply chart, balance distribution, and transfer-volume timeline
