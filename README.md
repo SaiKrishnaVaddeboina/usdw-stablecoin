@@ -1,5 +1,7 @@
 # USDw — Regulated Stablecoin (Teaching Project)
 
+[![🚀 Live Demo](https://img.shields.io/badge/%F0%9F%9A%80-Live%20Demo-FF4B4B?style=for-the-badge)](https://usdw-stablecoin.streamlit.app)
+&nbsp;
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![Hyperledger Fabric](https://img.shields.io/badge/Hyperledger-Fabric%202.5-2F3134.svg)](https://www.hyperledger.org/use/fabric)
@@ -8,11 +10,15 @@
 
 > A reference implementation of a regulated, permissioned stablecoin aligned with the **GENIUS Act** compliance pillars — built with Hyperledger Fabric chaincode and a Python simulation engine for fast iteration.
 
+> 👉 **[Try the live demo](https://usdw-stablecoin.streamlit.app)** — runs entirely in your browser, no setup required.
+>
 > ⚠️ **Teaching project.** No real funds, no real PII, no production guarantees. Cryptography is mocked for clarity (see [PQC notes](#post-quantum-cryptography-pqc)).
 
 ---
 
 ## Table of Contents
+
+- [Live Demo](#live-demo)
 
 - [Why USDw?](#why-usdw)
 - [Features](#features)
@@ -30,6 +36,48 @@
 - [Disclaimer](#disclaimer)
 
 ---
+
+## Live Demo
+
+🌐 **<https://usdw-stablecoin.streamlit.app>** — hosted on Streamlit Community Cloud, free for anyone to try.
+
+Suggested 60-second tour:
+
+1. Click **🎬 Scenarios → Happy Path ▶** to populate the system with sample data
+2. Switch to **📊 Dashboard** to see the reserves-vs-supply chart, balance distribution, and transfer-volume timeline
+3. Open **📜 Audit Log** to inspect the immutable event stream — filter by event type, full-text search, download as CSV/JSON
+4. Try **🛡️ Risk Controls → Freeze** an account, then attempt a **💸 Mint & Transfer** to that account to see the compliance gate in action
+
+## Screenshots
+
+<table>
+<tr>
+<td width="50%" align="center">
+<b>Dashboard</b><br>
+<sub>Live metrics · Reserves vs Supply · Balance distribution</sub><br>
+<a href="docs/screenshots/dashboard.png"><img src="docs/screenshots/dashboard.png" alt="Dashboard screenshot" width="100%"></a>
+</td>
+<td width="50%" align="center">
+<b>Mint & Transfer</b><br>
+<sub>Travel-rule preview · PQC signature verification</sub><br>
+<a href="docs/screenshots/transfer.png"><img src="docs/screenshots/transfer.png" alt="Mint & Transfer screenshot" width="100%"></a>
+</td>
+</tr>
+<tr>
+<td width="50%" align="center">
+<b>Audit Log</b><br>
+<sub>Filterable, searchable, exportable event stream</sub><br>
+<a href="docs/screenshots/audit.png"><img src="docs/screenshots/audit.png" alt="Audit Log screenshot" width="100%"></a>
+</td>
+<td width="50%" align="center">
+<b>Scenarios</b><br>
+<sub>One-click demo flows for the full lifecycle</sub><br>
+<a href="docs/screenshots/scenarios.png"><img src="docs/screenshots/scenarios.png" alt="Scenarios screenshot" width="100%"></a>
+</td>
+</tr>
+</table>
+
+> **Add your own screenshots:** drop PNGs into [`docs/screenshots/`](docs/screenshots/) using the filenames above (`dashboard.png`, `transfer.png`, `audit.png`, `scenarios.png`) and they'll show up here automatically.
 
 ## Why USDw?
 
